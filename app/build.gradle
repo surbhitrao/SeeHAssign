@@ -1,0 +1,62 @@
+apply plugin: 'com.android.application'
+
+android {
+    compileSdkVersion 28
+    defaultConfig {
+        applicationId "com.example.surbhit.seemassign"
+        minSdkVersion 23
+        targetSdkVersion 28
+        versionCode 1
+        versionName "1.0"
+        testInstrumentationRunner "android.support.test.runner.AndroidJUnitRunner"
+    }
+    buildTypes {
+        release {
+            minifyEnabled false
+            proguardFiles getDefaultProguardFile('proguard-android.txt'), 'proguard-rules.pro'
+        }
+    }
+    compileOptions {
+        targetCompatibility 1.8
+        sourceCompatibility 1.8
+    }
+
+    repositories {
+        maven{
+            url 'https://maven.google.com'
+        }
+        maven {
+            url "https://jitpack.io"
+        }
+    }
+}
+
+dependencies {
+    implementation fileTree(dir: 'libs', include: ['*.jar'])
+    implementation 'androidx.appcompat:appcompat:1.1.0-alpha05'
+    implementation 'androidx.preference:preference:1.1.0-alpha05'
+    implementation 'com.google.android.material:material:1.1.0-alpha06'
+
+    implementation 'no.nordicsemi.android:log:2.2.0'
+    implementation 'no.nordicsemi.android.support.v18:scanner:1.4.0'
+
+    // The DFU Library is imported automatically from jcenter:
+
+    // if you desire to build the DFU Library, clone the
+    // https://github.com/NordicSemiconductor/Android-DFU-Library project into DFULibrary folder,
+    // add it as a module into the project structure and uncomment the following line
+    // (and also the according lines in the settings.gradle):
+    // implementation project(':dfu')
+
+    // Import the BLE Common Library.
+    // The BLE Common Library depends on BLE Library. It is enough to include the first one.
+    implementation 'no.nordicsemi.android:ble-common:2.1.1'
+    // The BLE Common Library may be included from jcenter. If you want to modify the code,
+    // clone both projects from GitHub and replace the line above with the following
+    // (and also the according lines in the settings.gradle):
+    // implementation project(':ble-common')
+    implementation 'com.github.PhilJay:MPAndroidChart:v3.0.3'
+
+
+
+}
