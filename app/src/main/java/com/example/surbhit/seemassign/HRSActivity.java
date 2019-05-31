@@ -94,6 +94,9 @@ public class HRSActivity extends BleProfileActivity implements HRSManagerCallbac
 	}
 
 	private void showGraph() {
+
+		isGraphInProgress = true;
+
 		setHeartRateChart();
 	}
 
@@ -138,7 +141,8 @@ public class HRSActivity extends BleProfileActivity implements HRSManagerCallbac
 		@Override
 		public void run() {
 			if (mHrmValue > 0)
-			//	updateGraph(mHrmValue);
+				addHeartRateEntry();
+
 			if (isGraphInProgress)
 				mHandler.postDelayed(mRepeatTask, REFRESH_INTERVAL);
 		}
@@ -189,6 +193,7 @@ public class HRSActivity extends BleProfileActivity implements HRSManagerCallbac
 		addHeartRateEntry();
 		runOnUiThread(() -> mHRSValue.setText(getString(R.string.hrs_value, heartRate)));
 	}
+
 
 	@Override
 	public void onDeviceDisconnected(@NonNull final BluetoothDevice device) {
@@ -279,10 +284,6 @@ public class HRSActivity extends BleProfileActivity implements HRSManagerCallbac
 		set.setDrawValues(false);
 		return set;
 	}
-
-
-
-
 
 
 
